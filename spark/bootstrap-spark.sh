@@ -30,7 +30,7 @@ yum update -y
 echo installing all of the packages
 yum install hadoop-hdfs-namenode hadoop-hdfs-datanode hadoop-client spark-core spark-master spark-worker -y
 
-HDFS=/var/run/hadoop-hdfs
+HDFS=/var/lib/hadoop-hdfs
 echo created hdfs data directories..
 mkdir -p $HDFS/{name,data}
 chown hdfs:hdfs -R $HDFS
