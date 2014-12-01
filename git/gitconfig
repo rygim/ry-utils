@@ -12,3 +12,6 @@
 [push]
 	default = matching
 	rebase = true
+[user]
+	name = rygim
+	email = ry.gimmy@gmail.com
