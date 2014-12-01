@@ -5,3 +5,10 @@
 
 [core]
 	editor = vim
+
+[branch]
+	autosetuprebase = always
+
+[push]
+	default = matching
+	rebase = true

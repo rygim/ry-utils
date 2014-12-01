@@ -1,0 +1,24 @@
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+function parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+function git_repo_name() {
+  basename `git rev-parse --show-toplevel 2> /dev/null` | sed 's/ *$//g'
+}
+
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+NO_COLOR="\[\033[0m\]"
+
+GIT_DATA=$(parse_git_branch) 
+if [ "$GIT_DATA" != "" ]
+then
+  GIT_DATA=" `git_repo_name`:$GIT_DATA"
+fi
+
+PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$GIT_DATA$NO_COLOR \$ "
