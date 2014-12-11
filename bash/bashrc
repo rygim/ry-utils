@@ -21,4 +21,8 @@ then
   GIT_DATA=" `git_repo_name`:$GIT_DATA"
 fi
 
-PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$GIT_DATA$NO_COLOR \$ "
+#PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$GIT_DATA$NO_COLOR \$ "
+PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW$NO_COLOR \$ "
+
+alias vi='vim'
+alias v5l='cd /home/user/v5/repos/v5/v5-lumify'
