@@ -26,3 +26,6 @@ PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW$NO_COLOR \$ "
 
 alias vi='vim'
 alias v5l='cd /home/user/v5/repos/v5/v5-lumify'
+alias vpn='sudo openconnect -s /etc/vpnc/vpnc-script'
+
+[ -f ~/.custom_bashrc ] && source ~/.custom_bashrc
