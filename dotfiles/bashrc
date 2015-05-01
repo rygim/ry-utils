@@ -10,22 +10,15 @@ function git_repo_name() {
   basename `git rev-parse --show-toplevel 2> /dev/null` | sed 's/ *$//g'
 }
 
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
-NO_COLOR="\[\033[0m\]"
-
-GIT_DATA=$(parse_git_branch) 
-if [ "$GIT_DATA" != "" ]
-then
-  GIT_DATA=" `git_repo_name`:$GIT_DATA"
-fi
-
-#PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$GIT_DATA$NO_COLOR \$ "
-PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW$NO_COLOR \$ "
-
 alias vi='vim'
-alias v5l='cd /home/user/v5/repos/v5/v5-lumify'
 alias vpn='sudo openconnect -s /etc/vpnc/vpnc-script'
+alias tig='git'
+alias tgi='git'
+alias itg='git'
+alias igt='git'
+alias scp='scp -C'
+alias tmxu='tmux'
+alias less='less -f'
+alias lll='ls -larth'
 
 [ -f ~/.custom_bashrc ] && source ~/.custom_bashrc
