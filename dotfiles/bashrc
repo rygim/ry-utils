@@ -20,5 +20,8 @@ alias scp='scp -C'
 alias tmxu='tmux'
 alias less='less -f'
 alias lll='ls -larth'
+alias top='htop'
+
+export LYNX_CFG=~/.lynx.cfg
 
 [ -f ~/.custom_bashrc ] && source ~/.custom_bashrc

@@ -11,3 +11,4 @@ ln -s $REPO_TOP_DIR/dotfiles/bashrc ~/.bashrc
 ln -s $REPO_TOP_DIR/dotfiles/tmux.conf ~/.tmux.conf
 ln -s $REPO_TOP_DIR/dotfiles/vimrc ~/.vimrc
 ln -s $REPO_TOP_DIR/dotfiles/gitconfig ~/.gitconfig
+ln -s $REPO_TOP_DIR/dotfiles/lynx.cfg ~/.lynx.cfg
