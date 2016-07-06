@@ -63,7 +63,7 @@ function clone_repository {
    git pull 
 }
 
- turn off swappiness
+# turn off swappiness
 echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 sysctl vm.swappiness=0
 
@@ -76,10 +76,9 @@ EOF
 yum update -y
 
 download_install_rpm 'http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm'
-download_install_rpm 'http://archive.cloudera.com/cdh5/one-click-install/redhat/6/x86_64/cloudera-cdh-5-0.x86_64.rpm'
 
-yum install -y git tmux ppp pptp vpnc openvpn NetworkManager-pptp* NetworkManager-vpnc* NetworkManager-openvpn* NetworkManager* putty dkms kernel-devel httpd git nodejs npm libuuid-devel libtool zip unzip ntp ntpdate ntp-doc erlang hadoop-yarn zookeeper-server anglia ganglia-devel ganglia-gmetad ganglia-gmond ganglia-web telnet
-npm install -g inherits bower grunt grunt-cli
+yum install -y git tmux ppp pptp vpnc openvpn NetworkManager-pptp* NetworkManager-vpnc* NetworkManager-openvpn* NetworkManager* putty dkms kernel-devel httpd git libuuid-devel libtool zip unzip ntp ntpdate ntp-doc erlang telent gcc node npm vim
+npm install -g inherits bower grunt grunt-cli nodemon watchify
 yum groupinstall "Development Tools" -y
 
 cat > /etc/profile.d/java.sh << EOF
@@ -88,39 +87,6 @@ export PATH=\$JAVA_HOME/bin:\$PATH
 EOF
 turn_off_and_stop iptables
 turn_on_and_start ntpd
-
-download_install_rpm 'http://www.rabbitmq.com/releases/rabbitmq-server/v3.2.3/rabbitmq-server-3.2.3-1.noarch.rpm'
-
-install_tarball 'http://download-cf.jetbrains.com/idea/ideaIU-14.0.2.tar.gz' /opt/idea
-install_tarball 'http://mirror.reverse.net/pub/apache/maven/maven-3/3.2.3/binaries/apache-maven-3.2.3-bin.tar.gz' /opt/maven
-install_tarball 'http://apache.cs.utah.edu/storm/apache-storm-0.9.3/apache-storm-0.9.3.tar.gz' /opt/storm
-install_tarball 'http://eclipse.org/downloads/download.php?file=/jetty/8.1.15.v20140411/dist/jetty-distribution-8.1.15.v20140411.tar.gz' /opt/jetty
-install_tarball 'http://apache.mesi.com.ar/accumulo/1.5.2/accumulo-1.5.2-bin.tar.gz' /opt/accumulo
-install_tarball 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.2.tar.gz' /opt/elasticsearch
-install_tarball 'http://download.zeromq.org/zeromq-2.1.7.tar.gz' /opt/zeromq
-clone_repository 'https://github.com/nathanmarz/jzmq.git'
-
-chown root:root -R /opt
-chmod g+w -R /opt 
-
-#setup + initialize everything
-IP_ADDR=`hostname -I | sed 's/ .*//'`
-
-#hadoop
-mkdir -p /var/lib/hadoop-hdfs/cache/hdfs/dfs/{name,namesecondary,data} /var/local/hadoop
-chown hdfs:hdfs /var/lib/hadoop-hdfs/cache/hdfs/dfs/{name,namesecondary,data} /var/local/hadoop
-
-sudo -u zookeeper mkdir -p /var/lib/zookeeper
-
-#storm
-compile_and_install /opt/zeromq
-compile_and_install_autogen /opt/jzmq
-
-turn_on_and_start hadoop-hdfs-namenode &
-turn_on_and_start hadoop-hdfs-secondarynamenode &
-turn_on_and_start hadoop-hdfs-datanode &
-turn_on_and_start rabbitmq-server &
-turn_on_and_start zookeeper-server &
 
 $TOP_DIR/symlink-setup.sh
 
