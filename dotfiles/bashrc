@@ -20,8 +20,14 @@ alias scp='scp -C'
 alias tmxu='tmux'
 alias less='less -f'
 alias lll='ls -larth'
-alias top='htop'
+alias sl='ls'
 alias sbrc='source ~/.bashrc'
+alias g='git'
+alias tmu='tmux'
+alias ipa='ip a'
+
+set -o vi
+
 export PS1="\e[0;32m\u@\h\e[m \e[0;36m\w\e[m \e[0;35m[\t]\e[m \e[0;33m\$(git rev-parse --abbrev-ref HEAD 2> /dev/null | sed 's/.*/(&)/')\e[m\n> "
 export PS2="-> "
 
