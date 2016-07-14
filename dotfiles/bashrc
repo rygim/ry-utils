@@ -25,6 +25,7 @@ alias sbrc='source ~/.bashrc'
 alias g='git'
 alias tmu='tmux'
 alias ipa='ip a'
+alias ks='ls'
 
 set -o vi
 
@@ -34,3 +35,13 @@ export PS2="-> "
 export LYNX_CFG=~/.lynx.cfg
 
 [ -f ~/.custom_bashrc ] && source ~/.custom_bashrc
+
+function dl {
+  which aria2c &>> /dev/null || sudo dnf install -y aria2
+  TARGET=$1
+  mkdir -p $HOME/Downloads
+  cd $HOME/Downloads
+  aria2c $TARGET
+  cd - 2> /dev/null
+}
+
