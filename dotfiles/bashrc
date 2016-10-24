@@ -26,6 +26,16 @@ alias g='git'
 alias tmu='tmux'
 alias ipa='ip a'
 alias ks='ls'
+alias vu='vim'
+alias d='cd'
+
+# If i actually need `dc` I will call it from its full path
+alias dc='cd'
+
+function cdl {
+  cd $1
+  ls
+}
 
 set -o vi
 
