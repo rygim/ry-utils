@@ -1,6 +1,7 @@
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+for file in /etc/bash.bashrc /etc/bashrc
+do
+  [ -f $file ] && source $file
+done
 
 function parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -21,6 +22,8 @@ alias tmxu='tmux'
 alias less='less -f'
 alias lll='ls -larth'
 alias sl='ls'
+alias lls='ls'
+alias lss='ls'
 alias sbrc='source ~/.bashrc'
 alias g='git'
 alias tmu='tmux'
@@ -28,6 +31,7 @@ alias ipa='ip a'
 alias ks='ls'
 alias vu='vim'
 alias d='cd'
+alias gits='git status'
 
 # If i actually need `dc` I will call it from its full path
 alias dc='cd'
@@ -43,15 +47,22 @@ export PS1="\e[0;32m\u@\h\e[m \e[0;36m\w\e[m \e[0;35m[\t]\e[m \e[0;33m\$(git rev
 export PS2="-> "
 
 export LYNX_CFG=~/.lynx.cfg
+export PATH=$PATH:~/.bin
 
 [ -f ~/.custom_bashrc ] && source ~/.custom_bashrc
 
-function dl {
-  which aria2c &>> /dev/null || sudo dnf install -y aria2
-  TARGET=$1
-  mkdir -p $HOME/Downloads
-  cd $HOME/Downloads
-  aria2c $TARGET
-  cd - 2> /dev/null
-}
+alias ls='ls -h --color'
+alias lx='ls -lXB'         #  Sort by extension.
+alias lk='ls -lSr'         #  Sort by size, biggest last.
+alias lt='ls -ltr'         #  Sort by date, most recent last.
+alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
+alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
 
+# The ubiquitous 'll': directories first, with alphanumeric sorting:
+alias ll="ls -lv --group-directories-first"
+alias lm='ll |more'        #  Pipe through 'more'
+alias lr='ll -R'           #  Recursive ls.
+alias la='ll -A'           #  Show hidden files.
+alias tree='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
+
+eval "`dircolors`"
