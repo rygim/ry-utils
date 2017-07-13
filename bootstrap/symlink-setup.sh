@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 TOP_DIR=$(cd $(dirname "$0") && pwd)
 REPO_TOP_DIR=$TOP_DIR/..
 
